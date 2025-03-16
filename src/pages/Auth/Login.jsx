@@ -1,12 +1,12 @@
 import Lottie from "lottie-react";
-import registerLottie from "../../assets/register-lottie.json"
+import loginLottie from "../../assets/login-lottie.json"
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
         <div>
-            <div className='flex justify-center items-center min-h-screen bg-white'>
+            <div className='flex flex-col lg:flex-row justify-center items-center min-h-screen bg-white space-x-5'>
                 <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
                     <div className='mb-8 text-center'>
                         <h1 className='my-3 text-4xl font-bold'>Log In</h1>
@@ -96,6 +96,9 @@ const Login = () => {
                         </Link>
                         .
                     </p>
+                </div>
+                <div className="max-w-96">
+                    <Lottie animationData={loginLottie}></Lottie>
                 </div>
             </div>
         </div>
