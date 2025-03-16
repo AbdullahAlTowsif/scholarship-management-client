@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import user_pic from "../../assets/user.png"
+import logo from "../../assets/scholarship-logo-1.png"
 const Navbar = () => {
     const { user, logOut } = useAuth()
     const links = (
@@ -30,7 +31,11 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">ScholarEase</a>
+                    {/* <a className="btn btn-ghost text-xl font-bold text-white">ScholarEase</a> */}
+                    <Link to="/" className="flex justify-center items-center gap-2">
+                        <img className="w-10" src={logo} alt="ScholarEase Logo" />
+                        <span className="text-xl font-bold text-white">ScholarEase</span>
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
