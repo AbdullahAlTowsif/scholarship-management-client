@@ -1,7 +1,16 @@
+import { Link, NavLink } from "react-router-dom";
+
 const Navbar = () => {
     const links = (
         <>
-            <li><a>Home</a></li>
+            <li>
+                <NavLink
+                    to={'/'}
+                    style={{backgroundColor: "#89890C", color: "white", fontWeight: "bold"}}
+                >
+                    Home
+                </NavLink>
+            </li>
             <li><a>All Scholarship</a></li>
         </>
     )
@@ -27,7 +36,12 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Register</a>
+                    <Link 
+                        to={'/auth/register'}
+                        className="btn btn-ghost font-bold text-white hover:bg-[#89890C]"
+                    >
+                        Register
+                    </Link>
                 </div>
             </div>
         </div>
