@@ -1,9 +1,46 @@
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/login-lottie.json"
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import { saveUser } from "../../api/utils";
+import { TbFidgetSpinner } from "react-icons/tb";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const { signInWithGoogle, signIn, loading } = useAuth();
+
+    const hangleLogin = async e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(email, password);
+        try {
+            await signIn(email, password)
+            toast.success("Login Successful");
+            navigate('/')
+        }
+        catch (err) {
+            toast.error(err?.message);
+        }
+    }
+
+    // Handle Google Signin
+    const handleGoogleSignIn = async () => {
+        try {
+            //User Registration using google
+            const data = await signInWithGoogle()
+            await saveUser(data?.user)
+            navigate('/')
+            toast.success('Signup Successful')
+        } catch (err) {
+            console.log(err)
+            // toast.error(err?.message)
+        }
+    }
+
     return (
         <div>
             <div className='flex flex-col lg:flex-row justify-center items-center min-h-screen bg-white space-x-5'>
@@ -15,6 +52,7 @@ const Login = () => {
                         </p>
                     </div>
                     <form
+                    onSubmit={hangleLogin}
                         noValidate=''
                         action=''
                         className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -57,14 +95,12 @@ const Login = () => {
                                 type='submit'
                                 className='bg-[#890C25] w-full rounded-md py-3 text-white'
                             >
-                                {/* {loading ? (
+                                {loading ? (
                                     <TbFidgetSpinner className='animate-spin m-auto' />
                                 ) : (
                                     'Continue'
-                                )} */}
-                                Continue
+                                )}
                             </button>
-                            {/* <button className='bg-lime-500 w-full rounded-md py-3 text-white'>Continue</button> */}
                         </div>
                     </form>
                     <div className='space-y-1'>
@@ -80,6 +116,7 @@ const Login = () => {
                         <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                     </div>
                     <div
+                        onClick={handleGoogleSignIn}
                         className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
                     >
                         <FcGoogle size={32} />
