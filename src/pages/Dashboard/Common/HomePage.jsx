@@ -6,7 +6,7 @@ const HomePage = () => {
     <div className="container mx-auto p-6">
       <div className="hero bg-base-200 py-16 rounded-lg shadow-lg text-center">
         <div className="hero-content flex flex-col items-center">
-          <h1 className="text-4xl font-bold text-primary">Welcome to Scholarship Management System</h1>
+          <h1 className="text-4xl font-bold text-[#890C25]">Welcome to Scholarship Management System</h1>
           <p className="text-lg text-gray-700 mt-4 max-w-2xl">
             A platform where students can search for suitable universities and scholarships, apply directly, and track their applications efficiently.
           </p>

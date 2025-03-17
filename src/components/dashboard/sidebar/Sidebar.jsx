@@ -8,10 +8,14 @@ import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import { FaHome } from "react-icons/fa";
 import ModeratorMenu from "../menu/ModeratorMenu";
+import useRole from "../../../hooks/useRole";
+import UserMenu from "../menu/UserMenu";
+import AdminMenu from "../menu/AdminMenu";
 
 const Sidebar = () => {
     const { logOut } = useAuth();
     const [isActive, setActive] = useState(false);
+    const [role] = useRole();
 
     // Sidebar Responsive Handler
     const handleToggle = () => {
@@ -66,7 +70,10 @@ const Sidebar = () => {
                                 label='Home'
                                 address='/dashboard'
                             />
-                            <ModeratorMenu></ModeratorMenu>
+                            {/* Role wise Menu */}
+                            {role === 'User' && <UserMenu></UserMenu>}
+                            {role === 'Admin' && <AdminMenu></AdminMenu>}
+                            {role === 'Moderator' && <ModeratorMenu></ModeratorMenu>}
                         </nav>
                     </div>
                 </div>

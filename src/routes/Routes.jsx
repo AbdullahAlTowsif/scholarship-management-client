@@ -6,6 +6,7 @@ import Register from "../pages/Auth/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ErrorPage from "../pages/Dashboard/Common/ErrorPage";
 import HomePage from "../pages/Dashboard/Common/HomePage";
+import AddScholarship from "../pages/Dashboard/Moderator/AddScholarship";
 
 const router = createBrowserRouter([
     // home routes
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <HomePage></HomePage>,
+            },
+            {
+                path: '/dashboard/add-scholarship',
+                element: <AddScholarship></AddScholarship>,
             }
         ]
     },
