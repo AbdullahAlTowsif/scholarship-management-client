@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import MenuItem from "../menu/MenuItem";
 import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
+import { FaHome } from "react-icons/fa";
+import ModeratorMenu from "../menu/ModeratorMenu";
 
 const Sidebar = () => {
     const { logOut } = useAuth();
@@ -58,11 +60,16 @@ const Sidebar = () => {
                     {/* Navigation Items */}
                     <div className='flex flex-col justify-between flex-1 mt-6'>
                         <nav>
-                            {/* Menu Items */}
+                            {/* Home Menu */}
+                            <MenuItem
+                                icon={FaHome}
+                                label='Home'
+                                address='/dashboard'
+                            />
+                            <ModeratorMenu></ModeratorMenu>
                         </nav>
                     </div>
                 </div>
-
                 <div>
                     <hr />
 
