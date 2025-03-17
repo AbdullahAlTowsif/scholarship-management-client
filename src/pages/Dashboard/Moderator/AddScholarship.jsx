@@ -1,14 +1,66 @@
 import { useForm } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { imageUpload } from "../../../api/utils";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../../components/common/LoadingSpinner";
 
 const AddScholarship = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async(data) => {
+    // console.log(data);
+    setLoading(true);
+    try{
+        // upload image and get the URL
+        const imageFile = data.universityImage[0];
+        console.log(imageFile);
+        const universityImageURL = await imageUpload(imageFile);
+
+        const scholarshipData = {
+            scholarshipName: data.scholarshipName,
+            universityName: data.universityName,
+            image: universityImageURL,
+            universityCountry: data.universityCountry,
+            universityCity: data.universityCity,
+            universityRank: data.universityRank,
+            subjectCategory: data.subjectCategory,
+            scholarshipCategory: data.subjectCategory,
+            degree: data.degree,
+            tutionFees: data.tuitionFees,
+            aplicationFees: data.applicationFees,
+            serviceCharge: data.serviceCharge,
+            applicationDeadline: data.applicationDeadline,
+            scholarshipPostDate: data.postDate,
+            postedUserEmail: data.postedEmail,
+        }
+
+        console.log(scholarshipData);
+
+        // save scholarship data in the database
+        await axiosSecure.post("/scholarship", scholarshipData);
+        toast.success("Scholarship Data Added Successfully!")
+        navigate('/');
+    }
+    catch(err){
+        console.log(err);
+        toast.error('Failed to add Scholarship! Please try again...')
+    }
+    finally{
+        setLoading(false);
+    }
   };
+
+  if(loading){
+    return <LoadingSpinner></LoadingSpinner>
+  }
 
   return (
     <div className="container mx-auto p-6">

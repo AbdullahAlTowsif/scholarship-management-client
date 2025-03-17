@@ -9,12 +9,19 @@ const Navbar = () => {
             <li>
                 <NavLink
                     to={'/'}
-                    style={{ backgroundColor: "#89890C", color: "white", fontWeight: "bold" }}
+                    style={{ backgroundColor: "#89890C", color: "white", fontWeight: "bold", marginRight: '5px' }}
                 >
                     Home
                 </NavLink>
             </li>
-            <li><a>All Scholarship</a></li>
+            <li>
+                <NavLink
+                    to={'/all-scholarship'}
+                    style={{ backgroundColor: "#89890C", color: "white", fontWeight: "bold" }}
+                >
+                    All Scholarship
+                </NavLink>
+            </li>
         </>
     )
     return (
