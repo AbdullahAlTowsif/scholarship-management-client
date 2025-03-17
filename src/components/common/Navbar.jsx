@@ -31,7 +31,6 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    {/* <a className="btn btn-ghost text-xl font-bold text-white">ScholarEase</a> */}
                     <Link to="/" className="flex justify-center items-center gap-2">
                         <img className="w-10" src={logo} alt="ScholarEase Logo" />
                         <span className="text-xl font-bold text-white">ScholarEase</span>
@@ -45,7 +44,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         !user && (
-                            <Link to="/auth/register" className="btn btn-ghost mr-2">
+                            <Link to="/auth/register" className="btn btn-ghost mr-2 text-white font-bold">
                                 Register
                             </Link>
                         )
