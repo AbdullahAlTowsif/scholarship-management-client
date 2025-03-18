@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import { useState } from "react";
 import UpdateScholarshipModal from "../../../Modal/UpdateScholarshipModal";
+import Swal from "sweetalert2";
 
 const ManageScholarships = () => {
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
@@ -27,6 +28,46 @@ const ManageScholarships = () => {
     const closeUpdateModal = () => {
         setIsUpdateModalOpen(false);
         setSelectedScholarship(null);
+    };
+
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const res = await axiosSecure.delete(`/delete/scholarship/${id}`);
+                    // console.log(res);
+                    if (res.status === 200 || res.data.deletedCount > 0) {
+                        refetch(); // Refresh the classes after successful deletion
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Scholarship has been deleted successfully.",
+                            icon: "success",
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to delete the Scholarship.",
+                            icon: "error",
+                        });
+                    }
+                } catch (error) {
+                    console.error("Delete Error:", error);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Something went wrong. Please try again.",
+                        icon: "error",
+                    });
+                }
+            }
+        });
     };
 
 
@@ -68,7 +109,7 @@ const ManageScholarships = () => {
                                     <button onClick={() => openUpdateModal(scholarship)} className="btn btn-warning btn-sm">
                                         <FaEdit />
                                     </button>
-                                    <button className="btn btn-error btn-sm">
+                                    <button onClick={()=> handleDelete(scholarship._id)} className="btn btn-error btn-sm">
                                         <FaTrash />
                                     </button>
                                 </td>
