@@ -9,6 +9,7 @@ import HomePage from "../pages/Dashboard/Common/HomePage";
 import AddScholarship from "../pages/Dashboard/Moderator/AddScholarship";
 import AllScholarship from "../pages/Dashboard/Common/AllScholarship";
 import ScholarshipDetails from "../pages/Dashboard/Common/ScholarshipDetails";
+import Profile from "../pages/Dashboard/Common/Profile";
 
 const router = createBrowserRouter([
     // home routes
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <HomePage></HomePage>,
+            },
+            {
+                path: '/dashboard/profile',
+                element: <Profile></Profile>
             },
             {
                 path: '/dashboard/add-scholarship',
