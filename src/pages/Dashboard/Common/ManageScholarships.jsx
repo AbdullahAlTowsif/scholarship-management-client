@@ -3,17 +3,31 @@ import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
+import { useState } from "react";
+import UpdateScholarshipModal from "../../../Modal/UpdateScholarshipModal";
 
 const ManageScholarships = () => {
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+    const [selectedScholarship, setSelectedScholarship] = useState(null);
     const axiosSecure = useAxiosSecure();
 
-    const { data: scholarships = [], isLoading, error } = useQuery({
+    const { data: scholarships = [], isLoading, error, refetch } = useQuery({
         queryKey: ["scholarships"],
         queryFn: async () => {
             const { data } = await axiosSecure.get("/scholarship");
             return data;
         }
     });
+
+    const openUpdateModal = (scholarship) => {
+        setSelectedScholarship(scholarship);
+        setIsUpdateModalOpen(true);
+    };
+
+    const closeUpdateModal = () => {
+        setIsUpdateModalOpen(false);
+        setSelectedScholarship(null);
+    };
 
 
     if (isLoading) {
@@ -41,7 +55,7 @@ const ManageScholarships = () => {
                     </thead>
                     <tbody>
                         {scholarships.map((scholarship) => (
-                            <tr key={scholarship.id} className="border hover:bg-base-300">
+                            <tr key={scholarship._id} className="border hover:bg-base-300">
                                 <td className="p-3 border">{scholarship.scholarshipName}</td>
                                 <td className="p-3 border">{scholarship.universityName}</td>
                                 <td className="p-3 border">{scholarship.subjectCategory}</td>
@@ -51,7 +65,7 @@ const ManageScholarships = () => {
                                     <Link to={`/scholarship/${scholarship._id}`} className="btn btn-info btn-sm">
                                         <FaEye />
                                     </Link>
-                                    <button className="btn btn-warning btn-sm">
+                                    <button onClick={() => openUpdateModal(scholarship)} className="btn btn-warning btn-sm">
                                         <FaEdit />
                                     </button>
                                     <button className="btn btn-error btn-sm">
@@ -63,6 +77,7 @@ const ManageScholarships = () => {
                     </tbody>
                 </table>
             </div>
+            {isUpdateModalOpen && <UpdateScholarshipModal scholarship={selectedScholarship} isOpen={isUpdateModalOpen} onClose={closeUpdateModal} refetch={refetch} />}
         </div>
     );
 };

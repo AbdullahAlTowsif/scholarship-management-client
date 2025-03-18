@@ -51,7 +51,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manage-scholarship',
                 element: <ManageScholarships></ManageScholarships>
-            }
+            },
         ]
     },
     {
