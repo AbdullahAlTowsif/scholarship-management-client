@@ -3,6 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Navbar from "../../../components/common/Navbar";
+import { Link } from "react-router-dom";
 
 const AllScholarship = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -56,7 +57,7 @@ const AllScholarship = () => {
                                     <h3 className="text-xl font-semibold mt-4">{scholarship.scholarshipName}</h3>
                                     <p className="text-gray-700">{scholarship.universityName}</p>
                                     <p className="text-red-500">Deadline: {scholarship.applicationDeadline}</p>
-                                    <button className="btn bg-[#890C25] text-white mt-4">View Details</button>
+                                    <Link className="btn bg-[#890C25] text-white mt-4" to={`/scholarship/${scholarship._id}`}>View Details</Link>
                                 </div>
                             ))
                         ) : (

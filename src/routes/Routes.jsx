@@ -8,6 +8,7 @@ import ErrorPage from "../pages/Dashboard/Common/ErrorPage";
 import HomePage from "../pages/Dashboard/Common/HomePage";
 import AddScholarship from "../pages/Dashboard/Moderator/AddScholarship";
 import AllScholarship from "../pages/Dashboard/Common/AllScholarship";
+import ScholarshipDetails from "../pages/Dashboard/Common/ScholarshipDetails";
 
 const router = createBrowserRouter([
     // home routes
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
     {
         path: '/all-scholarship',
         element: <AllScholarship></AllScholarship>
+    },
+    {
+        path: '/scholarship/:id',
+        element: <ScholarshipDetails></ScholarshipDetails>
     },
     {
         path: '*',
