@@ -10,6 +10,7 @@ import AddScholarship from "../pages/Dashboard/Moderator/AddScholarship";
 import AllScholarship from "../pages/Dashboard/Common/AllScholarship";
 import ScholarshipDetails from "../pages/Dashboard/Common/ScholarshipDetails";
 import Profile from "../pages/Dashboard/Common/Profile";
+import ManageScholarships from "../pages/Dashboard/Common/ManageScholarships";
 
 const router = createBrowserRouter([
     // home routes
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/add-scholarship',
                 element: <AddScholarship></AddScholarship>,
+            },
+            {
+                path: '/dashboard/manage-scholarship',
+                element: <ManageScholarships></ManageScholarships>
             }
         ]
     },
