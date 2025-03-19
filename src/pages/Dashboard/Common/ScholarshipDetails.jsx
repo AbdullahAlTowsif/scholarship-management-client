@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -7,6 +7,7 @@ import Navbar from "../../../components/common/Navbar";
 const ScholarshipDetails = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const { data: scholarship, isLoading, error } = useQuery({
         queryKey: ["scholarship", id],
@@ -22,6 +23,10 @@ const ScholarshipDetails = () => {
 
     if (error) {
         return <p className="text-center text-red-500">Failed to load scholarship details</p>;
+    }
+
+    const handlePay =() => {
+        navigate(`/payment/${id}`)
     }
 
     return (
@@ -45,7 +50,7 @@ const ScholarshipDetails = () => {
                     <h5 className="text-2xl font-bold text-red-600"><span className="font-semibold text-xl text-red-500">Application Deadline: </span>{scholarship.applicationDeadline}</h5>
                     <h5 className="text-2xl font-bold text-[#890C25]"><span className="font-semibold text-xl text-[#89890C]">Posted Date: </span>{scholarship.scholarshipPostDate}</h5>
                     <h5 className="text-2xl font-bold text-[#890C25]"><span className="font-semibold text-xl text-[#89890C]">Posted Email: </span>{scholarship.postedUserEmail}</h5>
-                    <button className="btn bg-[#890C25] text-white mt-6 w-full">Apply for Scholarship</button>
+                    <button onClick={handlePay} className="btn bg-[#890C25] text-white mt-6 w-full">Apply for Scholarship</button>
                 </div>
             </div>
         </div>
