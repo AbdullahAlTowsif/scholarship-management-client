@@ -14,6 +14,7 @@ import ManageScholarships from "../pages/Dashboard/Common/ManageScholarships";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Payment from "../pages/Payment/Payment";
 import ApplicationForm from "../pages/Payment/ApplicationForm";
+import MyApplication from "../pages/Dashboard/User/MyApplication";
 
 const router = createBrowserRouter([
     // home routes
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manage-users',
                 element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: '/dashboard/my-application',
+                element: <MyApplication></MyApplication>,
             }
         ]
     },
