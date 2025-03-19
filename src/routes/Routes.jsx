@@ -13,6 +13,7 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import ManageScholarships from "../pages/Dashboard/Common/ManageScholarships";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Payment from "../pages/Payment/Payment";
+import ApplicationForm from "../pages/Payment/ApplicationForm";
 
 const router = createBrowserRouter([
     // home routes
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
     {
         path: '/payment/:id',
         element: <Payment></Payment>,
+    },
+    {
+        path: '/application-form',
+        element: <ApplicationForm></ApplicationForm>
     },
     {
         path: '*',

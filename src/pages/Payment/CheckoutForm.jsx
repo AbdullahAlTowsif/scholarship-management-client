@@ -75,7 +75,8 @@ const CheckoutForm = ({ aplicationFees, scholarshipId, userName, userEmail, post
                 await axiosSecure.post("/enroll/payments", paymentData);
 
                 // Redirect to the enrolled classes page after successful payment
-                // navigate("/dashboard/my-enroll-class");
+                // navigate("/application-form");
+                navigate(`/application-form?scholarshipId=${scholarshipId}`);
             }
         } catch (error) {
             console.error("Payment error:", error);
