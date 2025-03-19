@@ -163,7 +163,7 @@ const MyApplication = () => {
   const { user } = useAuth(); // Get the current authenticated user's details
   const axiosSecure = useAxiosSecure(); // Get the axios instance with secure headers
 
-  const { data: scholarships = [], isLoading, error } = useQuery({
+  const { data: scholarships = [], isLoading, error, refetch } = useQuery({
     queryKey: ['applied-scholarships', user?.email], // Fetch data only if user is authenticated
     queryFn: () => fetchScholarships(user?.email, axiosSecure),
     enabled: !!user?.email, // Only run the query if the user is logged in
@@ -173,6 +173,7 @@ const MyApplication = () => {
     mutationFn: (scholarshipId) => cancelScholarship(scholarshipId, axiosSecure),
     onSuccess: () => {
       toast.success('Application canceled successfully');
+      refetch();
     },
     onError: () => {
       toast.error('Failed to cancel application');
