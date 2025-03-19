@@ -109,7 +109,7 @@ const ManageScholarships = () => {
                                     <button onClick={() => openUpdateModal(scholarship)} className="btn btn-warning btn-sm">
                                         <FaEdit />
                                     </button>
-                                    <button onClick={()=> handleDelete(scholarship._id)} className="btn btn-error btn-sm">
+                                    <button onClick={() => handleDelete(scholarship._id)} className="btn btn-error btn-sm">
                                         <FaTrash />
                                     </button>
                                 </td>

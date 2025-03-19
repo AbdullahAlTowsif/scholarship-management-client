@@ -59,7 +59,7 @@ const UpdateScholarshipModal = ({ scholarship, isOpen, onClose, refetch }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center z-10 bg-opacity-30 backdrop-blur-sm">
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-2xl">
                 <h1 className="text-2xl font-bold text-center text-[#890C25] mb-4">Edit Scholarship</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
