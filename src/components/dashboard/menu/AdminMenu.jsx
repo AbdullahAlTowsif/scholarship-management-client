@@ -10,7 +10,7 @@ const AdminMenu = () => {
             <MenuItem icon={MdReviews} label='All Reviews' address='/dashboard/all-reviews' />
             <MenuItem icon={IoCheckmarkDoneCircle} label='All Applied Scholarship' address='/dashboard/applied-scholarship' />
             <MenuItem icon={MdSchool} label='Add Scholarship' address='/dashboard/add-scholarship' />
-            <MenuItem icon={FaUsersCog} label='Manage Users' address='/dashboard/add-scholarship' />
+            <MenuItem icon={FaUsersCog} label='Manage Users' address='/dashboard/manage-users' />
         </>
     )
 }

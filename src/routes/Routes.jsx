@@ -11,6 +11,7 @@ import AllScholarship from "../pages/Dashboard/Common/AllScholarship";
 import ScholarshipDetails from "../pages/Dashboard/Common/ScholarshipDetails";
 import Profile from "../pages/Dashboard/Common/Profile";
 import ManageScholarships from "../pages/Dashboard/Common/ManageScholarships";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 
 const router = createBrowserRouter([
     // home routes
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
                 path: '/dashboard/manage-scholarship',
                 element: <ManageScholarships></ManageScholarships>
             },
+            {
+                path: '/dashboard/manage-users',
+                element: <ManageUsers></ManageUsers>
+            }
         ]
     },
     {
